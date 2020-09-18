@@ -1,0 +1,111 @@
+html,
+body {
+  height: 100%;
+  overflow: auto;
+}
+
+div {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 所有div设置border-box */
+*,
+::after,
+::before {
+  box-sizing: border-box
+}
+
+/* 不允许鼠标选择 */
+.select-none {
+  user-select: none;
+}
+
+/* 左对齐 */
+.txt-left {
+  text-align: left;
+}
+
+/* 居中 */
+.txt-center {
+  text-align: center;
+}
+
+/* 右对齐 */
+.txt-right {
+  text-align: right;
+}
+
+/* 鼠标光标形状的修改 */
+.cursordefault {
+  cursor: default;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  opacity: 0.6;
+}
+
+/* 按钮中的icon设置 */
+.btnicon {
+  font-size: 16px;
+  margin-right: 6px;
+  font-weight: 400;
+}
+
+/* 表格中多个icon的间距 */
+.iconbet {
+  margin-left: 20px;
+}
+
+/* 表头样式 */
+.tableHead {
+  font-family: "微软雅黑 Bold", "微软雅黑 Regular", 微软雅黑, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  color: #333333;
+}
+
+/* 表体样式 */
+.tableTbody {
+  font-family: 微软雅黑, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: #333333;
+}
+
+.formLb {
+  color: #081d2d;
+  font: Bold 15px/20px Microsoft YaHei;
+  display: block;
+  margin-bottom: 8px;
+}
+
+
+.tableDiv .iconfont {
+  font-size: 16px;
+  color: #586A80;
+}
+
+/*typeSelect滚动条样式*/
+.typeSelect::-webkit-scrollbar {
+  width: 6px;
+  /*height: 4px;*/
+}
+
+.typeSelect::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.typeSelect::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
+}

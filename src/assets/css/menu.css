@@ -1,0 +1,291 @@
+.menu-top {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.menu-top-title {
+  width: 206px;
+  height: 100%;
+  background-color: #0081cc;
+}
+
+.menutitle {
+  color: #ffffff;
+  line-height: 60px;
+  font-family: "微软雅黑 Bold", "微软雅黑 Regular", 微软雅黑, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.menu-top-info {
+  width: calc(100% - 206px);
+  height: 100%;
+  background-color: #199ed8;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.menu-top-info .quit,
+.menu-top-info .pwdchange,
+.menu-top-info .userinfo {
+  color: #ffffff;
+  font-family: "Arial Normal", "Arial", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  font-size: 18px;
+  padding: 13px 20px 0;
+}
+
+.menu-top-info .userinfo {
+  max-width: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.menu-top-info .userinfo .userinfo-uname {
+  word-break: break-all;
+  word-wrap: break-word;
+  display: flex;
+  text-align: left;
+}
+
+.menu-top-info .userinfo .userinfo-icon {
+  display: flex;
+}
+
+.menu-top-info .userinfo .userinfo-uname span,
+.menu-top-info .userinfo .userinfo-icon i {
+  align-self: center;
+}
+
+.quitdiv .iconfont,
+.pwdchangediv .iconfont {
+  margin-right: 14px;
+  font-size: 19px;
+  height: 34px;
+  line-height: 34px;
+  position: relative;
+  top: 1px;
+}
+
+.userinfo .iconfont {
+  margin-right: 14px;
+  font-size: 19px;
+  height: 34px;
+  line-height: 34px;
+}
+
+.quitdiv:hover,
+.pwdchangediv:hover {
+  cursor: pointer;
+  color: #0081cc;
+}
+
+.menu-top-namediv {
+  height: 100%;
+  padding-right: 20px;
+}
+
+.menu-top-name {
+  font-family: "微软雅黑 Regular", 微软雅黑, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 36px;
+  color: #ffffff;
+  line-height: 60px;
+}
+
+.menu-middle {
+  height: calc(100% - 60px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.menu-middle-left {
+  width: 206px;
+  background-color: #ffffff;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.menu-middle-right {
+  width: calc(100% - 206px);
+  height: 100%;
+  overflow: auto;
+  text-align: left;
+}
+
+.containdiv {
+  min-height: calc(100% - 40px);
+  padding: 20px 20px 10px 20px;
+}
+
+.menu-bottom {
+  height: 40px;
+}
+
+.menu-bottom .menu-bottom-sp {
+  font-family: 微软雅黑, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+  color: #333333;
+  line-height: 40px;
+}
+
+.menu-bottom .menu-bottom-sp1 {
+  margin-left: 20px;
+}
+
+.menu-bottom-link {
+  text-decoration: none;
+}
+
+.menu-bottom-link:link {
+  color: rgb(40, 145, 206);
+}
+
+.menu-bottom-link:visited {
+  color: red;
+}
+
+.menu-bottom-link:hover {
+  text-decoration: underline;
+  color: #0081cc;
+}
+
+.elmenu {
+  text-align: left;
+  position: relative;
+  border-right: 1px solid rgb(204, 204, 204);
+
+}
+
+.elmenu /deep/ .el-submenu__title {
+  border-left: #0a3190 10px solid;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.elmenu /deep/ .el-submenu__title:hover {
+  color: #0081cc !important;
+}
+
+.elmenu /deep/ .el-menu-item {
+  padding: 0 30px !important;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.elmenu /deep/ .el-menu-item:hover {
+  color: #0081cc !important;
+  text-decoration: underline;
+}
+
+.elmenu /deep/ .is-active {
+  background-color: #c6e3f3 !important;
+}
+
+.elmenu /deep/ .el-submenu.is-active .el-submenu__title {
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+
+
+/* dialog部分css */
+
+/* dialog头部背景色 */
+.pwdchangedlg /deep/ .el-dialog__header {
+  background-color: #15b1a8;
+  padding: 12px 10px 12px 20px;
+  text-align: left;
+}
+
+/* dialog头部字体 */
+.pwdchangedlg /deep/ .el-dialog__title {
+  font-family: "Arial Normal", "Arial", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+/* dialog头部关闭按钮微调 */
+.pwdchangedlg /deep/ .el-dialog__headerbtn {
+  top: 8px;
+  right: 10px;
+  font-weight: bold;
+}
+
+.pwdchangedlg /deep/ .el-dialog__headerbtn .el-dialog__close {
+  color: #ffffff;
+  font-size: 30px;
+}
+
+.pwdchangedlg /deep/ .el-dialog__body {
+  padding: 20px 40px 20px 30px;
+}
+
+.pwdchangeform /deep/ .el-form-item__label {
+  line-height: 36px;
+}
+
+.pwdchangeform /deep/ .pwdchangeitem1 {
+  margin-bottom: 0px;
+}
+
+.itemrequire {
+  position: absolute;
+  right: 0px;
+}
+
+.itemrequire::before {
+  content: "*";
+  position: absolute;
+  color: #F56C6C;
+  left: -10px;
+  top: 2px;
+  font-size: 14px;
+}
+
+.itemtips {
+  font-size: 13px;
+  position: absolute;
+  bottom: -26px;
+  right: 0px;
+}
+
+.headerstyle {
+  color: #333333;
+  background-color: #fcf3ed;
+}
+
+/* 搜索信息通用设置 */
+.searchInfo {
+  padding-bottom: 20px;
+  padding-left: 6px;
+}
+
+/* 搜索信息div中的间距 */
+.searchInfoBet {
+  margin-left: 10px;
+}
+
+/* 分页div */
+.pagenation {
+  padding: 10px 10px 0;
+}
+
+.pagenation /deep/ .el-select--mini {
+  position: relative;
+  top: -3px;
+}

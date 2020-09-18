@@ -1,0 +1,57 @@
+.dlgbtn {
+    padding: 12px 36px !important;
+}
+
+.dlgbtn:hover {
+    opacity: 0.6;
+}
+
+.dlgbtnprimary {
+    background-color: #15b1a8 !important;
+    border: #15b1a8 1px solid !important;
+}
+
+/* 去除el-table 下的边框线 */
+.el-table::before {
+    height: 0px!important;
+ }
+
+
+/* 首页表格隔行换色颜色修改 */
+.maintable .el-table--striped .el-table__body tr.el-table__row--striped td,
+.maintable1 .el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: #E2F7F6;
+}
+
+.maintable1 .el-table td,
+.maintable1 .el-table th {
+    padding: 8px 0;
+}
+
+/* el-table表格行加粗 */
+.maintable .boldtr {
+    font-weight: bold;
+}
+
+/* 搜索条件的form */
+.searchInfo .el-form {
+    display: inline-block;
+}
+
+.searchInfoFrom .el-form-item {
+    margin-bottom: 0px;
+    display: inline-block;
+}
+
+.searchInfoFrom .el-form-item__content {
+    display: inline-block;
+    line-height: 36px;
+}
+
+.searchInfoFrom .el-form-item__label {
+    line-height: 36px;
+}
+
+.searchInfobtn {
+    padding: 10px 36px !important;
+}
