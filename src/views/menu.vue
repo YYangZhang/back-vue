@@ -236,7 +236,7 @@ export default util.useCommon({
         {
           title: "密码管理",
           idx: "6",
-          details: [{ path: "/" }],
+          details: [{ path: "/pwdManager" }],
         },
       ],
     };

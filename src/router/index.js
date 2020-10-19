@@ -23,10 +23,17 @@ Vue.use(VueRouter)
         component: () => import('../views/describ.vue')
       },
       {
+        // 登录日志
         path: '/loginlog',
         name: 'loginlog',
         component: () => import('../views/loginlog.vue')
       },
+      {
+        // 补单/退款 密码管理
+        path: '/pwdManager',
+        name: 'pwdManager',
+        component: () => import('../views/pwdManager.vue')
+      }
     ]
   },
   
