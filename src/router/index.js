@@ -3,21 +3,20 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-  const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/login.vue')
+    component: () => import( /* webpackChunkName: "about" */ '../views/login.vue')
   },
   {
     path: '/menu',
     name: 'menu',
-    component: () => import( '../views/menu.vue'),
+    component: () => import('../views/menu.vue'),
     children: [{
-      // 系统概述
+        // 系统概述
         path: '',
         name: 'describ',
         component: () => import('../views/describ.vue')
@@ -29,6 +28,18 @@ Vue.use(VueRouter)
         component: () => import('../views/loginlog.vue')
       },
       {
+        // 角色管理
+        path: '/role',
+        name: 'role',
+        component: () => import('../views/roleManager.vue')
+      },
+      {
+        // 账户管理
+        path: '/account',
+        name: 'account',
+        component: () => import('../views/accountManager.vue')
+      },
+      {
         // 补单/退款 密码管理
         path: '/pwdManager',
         name: 'pwdManager',
@@ -36,7 +47,7 @@ Vue.use(VueRouter)
       }
     ]
   },
-  
+
 ]
 
 const router = new VueRouter({

@@ -111,10 +111,40 @@ div {
 }
 
 .primarybtn {
-  background-color: #0081cc!important;
-  border: none!important;
+  background-color: #0081cc !important;
+  border: none !important;
 }
 
 .primarybtn:hover {
   opacity: 0.6;
+}
+
+.textbtn {
+  font-family: "微软雅黑 Bold", "微软雅黑 Regular", 微软雅黑, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  color: #337AB7;
+  cursor: pointer;
+}
+
+.textbtn:hover {
+  opacity: 0.6;
+}
+
+.tablebet {
+  margin-left: 10px;
+}
+
+.deltext {
+  color: #ff0000;
+}
+
+.disabletext {
+  color: #999999 !important;
+  cursor: not-allowed;
+}
+
+.disabletext:hover{
+  opacity: 1!important;
 }

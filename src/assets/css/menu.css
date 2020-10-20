@@ -235,6 +235,10 @@
   padding: 20px 40px 20px 30px;
 }
 
+.pwdchangedlg /deep/ .el-dialog__footer{
+  text-align: center;
+}
+
 .pwdchangeform /deep/ .el-form-item__label {
   line-height: 36px;
 }

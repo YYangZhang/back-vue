@@ -9,7 +9,10 @@
         @click="showCreatePwd('return')"
         >创建退款密码</el-button
       >
-      <el-button type="primary" class="primarybtn marginleftpwd"
+      <el-button
+        type="primary"
+        class="primarybtn marginleftpwd"
+        @click="showModifyPwd('return')"
         >修改退款密码</el-button
       >
       <el-button
@@ -26,7 +29,10 @@
         @click="showCreatePwd('assess')"
         >创建补单密码</el-button
       >
-      <el-button type="primary" class="primarybtn marginleftpwd"
+      <el-button
+        type="primary"
+        class="primarybtn marginleftpwd"
+        @click="showModifyPwd('assess')"
         >修改补单密码</el-button
       >
       <el-button
@@ -83,6 +89,7 @@
       class="pwdchangedlg"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
+      :before-close="createpwdClose"
     >
       <div style="position: relative">
         <span class="itemrequire">必填</span>
@@ -134,6 +141,71 @@
       </el-row>
     </el-dialog>
 
+    <!-- 修改密码 -->
+    <el-dialog
+      :title="modifypwdTitle"
+      :visible.sync="modifypwdShow"
+      width="540px"
+      class="pwdchangedlg"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      :before-close="modifypwdClose"
+    >
+      <div style="position: relative">
+        <span class="itemrequire">必填</span>
+        <el-form
+          label-width="100px"
+          class="pwdchangeform"
+          :model="modifyform"
+          ref="modifyform"
+          :rules="modifyrules"
+        >
+          <el-form-item
+            :label="resetType == 'return' ? '原退款密码' : '原补单密码'"
+            prop="originpwd"
+          >
+            <el-input
+              :placeholder="
+                resetType == 'return' ? '请输入原退款密码' : '请输入原补单密码'
+              "
+              size="medium"
+              type="password"
+              v-model="modifyform.originpwd"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            :label="resetType == 'return' ? '新退款密码' : '新补单密码'"
+            prop="newpwd"
+          >
+            <el-input
+              placeholder="请输入新密码 密码区分大小写"
+              size="medium"
+              type="password"
+              v-model="modifyform.newpwd"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="请确认密码" prop="checkpwd">
+            <el-input
+              placeholder="请再次输入密码 密码区分大小写"
+              size="medium"
+              type="password"
+              v-model="modifyform.checkpwd"
+            ></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+      <el-row>
+        <el-col :span="24" class="txt-center" style="padding-top: 20px">
+          <el-button
+            type="primary"
+            class="dlgbtn dlgbtnprimary"
+            @click="modifypwdSave"
+            >保 存</el-button
+          >
+        </el-col>
+      </el-row>
+    </el-dialog>
+
     <!-- 重置密码 -->
     <el-dialog
       :title="restpwdTitle"
@@ -168,13 +240,26 @@
 import util from "../components/util";
 export default util.useCommon({
   data() {
-    var createValidateLogin = (rule, value, callback) => {
-      if (this.createform.originpwd !== "") {
-        this.$refs.createform.validateField("originpwd");
+    var modifypass = (rule, value, callback) => {
+      // if (
+      //   /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/.test(value) == false
+      // ) {
+      //   callback(new Error("请输入8~20位且由字母数字组成的密码！"));
+      // } else
+      if (this.modifyform.originpwd == value) {
+        callback(new Error("密码与原密码一致！"));
+      } else if (this.modifyform.checkPwd !== "") {
+        this.$refs.modifyform.validateField("checkPwd");
       }
       callback();
     };
-
+    var modifyValidate = (rule, value, callback) => {
+      if (value !== this.modifyform.newpwd) {
+        callback(new Error("两次密码输入不一致！"));
+      } else {
+        callback();
+      }
+    };
     var createValidate = (rule, value, callback) => {
       if (value !== this.createform.newpwd) {
         callback(new Error("两次密码输入不一致！"));
@@ -185,9 +270,6 @@ export default util.useCommon({
     return {
       createpwdShow: false, // 创建密码 dialog
       createpwdTitle: "创建密码", // 创建密码标题
-
-      modifypwdShow: false, // 修改密码 dialog
-      modifypwdTitle: "修改密码", // 修改密码标题
       createform: {
         // 创建密码form表单
         originpwd: "",
@@ -197,7 +279,6 @@ export default util.useCommon({
       createrules: {
         originpwd: [
           { required: true, message: "请输入当前登录密码！", trigger: "blur" },
-          { validator: createValidateLogin, trigger: "blur" },
         ],
         newpwd: [
           { required: true, message: "请输入新密码！", trigger: "blur" },
@@ -205,6 +286,28 @@ export default util.useCommon({
         checkpwd: [
           { required: true, message: "请再次输入新密码！", trigger: "blur" },
           { validator: createValidate, trigger: "blur" },
+        ],
+      },
+
+      modifypwdShow: false, // 修改密码 dialog
+      modifypwdTitle: "修改密码", // 修改密码标题
+      modifyform: {
+        // 修改密码form表单
+        originpwd: "",
+        newpwd: "",
+        checkpwd: "",
+      },
+      modifyrules: {
+        originpwd: [
+          { required: true, message: "请输入原密码！", trigger: "blur" },
+        ],
+        newpwd: [
+          { required: true, message: "请输入新密码！", trigger: "blur" },
+          { validator: modifypass, trigger: "blur" },
+        ],
+        checkpwd: [
+          { required: true, message: "请再次输入新密码！", trigger: "blur" },
+          { validator: modifyValidate, trigger: "blur" },
         ],
       },
 
@@ -248,47 +351,101 @@ export default util.useCommon({
       }
       v.resetType = type;
       console.log(v.createpwdTitle);
-      v.randompwds();
       v.createpwdShow = true;
-      v.$refs["createform"].resetFields();
-    //   this.$refs['createform'].clearValidate()
     },
     createpwdSave() {
       // 保存创建密码 dialog
-    //   this.createpwdShow = false;
-     var v = this;
-      v.$refs["createform"].validate((valid) => {
-        if(valid){
-          v.confirm("确认修改密码？",function(isOk){
-            if(isOk){
-              console.log("修改密码成功")
-              v.createpwdShow = false;
-              // v.dopost(
-              //   "/todo",
-              //   {
-              //     oldpwd: v.changeform.oldpwd,
-              //     newpwd: v.changeform.newpwd,
-              //   },
-              //   function (result) {
-              //     if ("0000" === result.state) {
-              //       v.message("success", "修改密码成功，请重新登录！");
-              //       v.$refs["changeform"].resetFields();
-              //       localStorage.removeItem("userInfo");
-              //       v.$router.replace("/");
-              //     } else {
-              //       var msg = [];
-              //       for (var i = 0; i < result.body.length; i++) {
-              //         msg.push(result.body[i].errmsg);
-              //       }
-              //       v.message("error", msg.join("<br/>"));
-              //     }
-              //     console.log(result);
-              //   }
-              // )
-            }
-          })
-        }
-      })
+      var v = this;
+      console.log(v.resetType);
+      if (v.resetType == "return") {
+        v.$refs["createform"].validate((valid) => {
+          if (valid) {
+            v.confirm("确认创建退款密码？", function (isOk) {
+              if (isOk) {
+                console.log("创建退款密码成功");
+                v.$message({
+                  message: "创建退款密码成功",
+                  type: "success",
+                });
+                v.createpwdClose();
+              }
+            });
+          }
+        });
+      } else if (v.resetType == "assess") {
+        v.$refs["createform"].validate((valid) => {
+          if (valid) {
+            v.confirm("确认创建补单密码？", function (isOk) {
+              if (isOk) {
+                console.log("创建补单密码成功");
+                v.$message({
+                  message: "创建补单密码成功",
+                  type: "success",
+                });
+                v.createpwdClose();
+              }
+            });
+          }
+        });
+      }
+    },
+    createpwdClose() {
+      // 关闭修改密码密码 dialog
+      // 清空校验
+      this.$refs["createform"].resetFields();
+      this.createpwdShow = false;
+    },
+
+    showModifyPwd(type) {
+      var v = this;
+      if (type == "return") {
+        v.modifypwdTitle = "修改退款密码";
+      } else if (type == "assess") {
+        v.modifypwdTitle = "修改补单密码";
+      }
+      v.resetType = type;
+      console.log(v.modifypwdTitle);
+      v.modifypwdShow = true;
+    },
+    modifypwdSave() {
+      // 保存修改密码 dialog
+      var v = this;
+      console.log(v.resetType);
+      if (v.resetType == "return") {
+        v.$refs["modifyform"].validate((valid) => {
+          if (valid) {
+            v.confirm("确认修改退款密码？", function (isOk) {
+              if (isOk) {
+                console.log("修改退款密码成功");
+                v.$message({
+                  message: "修改退款密码成功",
+                  type: "success",
+                });
+                v.modifypwdClose();
+              }
+            });
+          }
+        });
+      } else if (v.resetType == "assess") {
+        v.$refs["modifyform"].validate((valid) => {
+          if (valid) {
+            v.confirm("确认修改补单密码？", function (isOk) {
+              if (isOk) {
+                console.log("修改补单密码成功");
+                v.$message({
+                  message: "修改补单密码成功",
+                  type: "success",
+                });
+                v.modifypwdClose();
+              }
+            });
+          }
+        });
+      }
+    },
+    modifypwdClose() {
+      this.$refs["modifyform"].resetFields();
+      this.modifypwdShow = false;
     },
 
     showResetPwd(type) {

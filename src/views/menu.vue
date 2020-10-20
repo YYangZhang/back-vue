@@ -229,8 +229,8 @@ export default util.useCommon({
           title: "权限管理",
           idx: "5",
           details: [
-            { detailtitle: "角色管理", path: "/" },
-            { detailtitle: "账户管理", path: "/" },
+            { detailtitle: "角色管理", path: "/role" },
+            { detailtitle: "账户管理", path: "/account" },
           ],
         },
         {
